@@ -84,11 +84,11 @@
 			children = (
 				6E657FE32B08FEAC003ECF02 /* CapShooterApp.swift */,
 				6E657FE52B08FEAC003ECF02 /* ContentView.swift */,
+				6E6580012B08FEF0003ECF02 /* MenuView.swift */,
 				6E657FE72B08FEAC003ECF02 /* ImmersiveView.swift */,
 				6E657FE92B08FEAE003ECF02 /* Assets.xcassets */,
 				6E657FEE2B08FEAE003ECF02 /* Info.plist */,
 				6E657FEB2B08FEAE003ECF02 /* Preview Content */,
-				6E6580012B08FEF0003ECF02 /* MenuView.swift */,
 			);
 			path = CapShooter;
 			sourceTree = "<group>";
