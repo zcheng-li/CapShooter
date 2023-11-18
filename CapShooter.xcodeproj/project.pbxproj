@@ -1,0 +1,498 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6E657FE22B08FEAC003ECF02 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 6E657FE12B08FEAC003ECF02 /* RealityKitContent */; };
+		6E657FE42B08FEAC003ECF02 /* CapShooterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E657FE32B08FEAC003ECF02 /* CapShooterApp.swift */; };
+		6E657FE62B08FEAC003ECF02 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E657FE52B08FEAC003ECF02 /* ContentView.swift */; };
+		6E657FE82B08FEAC003ECF02 /* ImmersiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E657FE72B08FEAC003ECF02 /* ImmersiveView.swift */; };
+		6E657FEA2B08FEAE003ECF02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E657FE92B08FEAE003ECF02 /* Assets.xcassets */; };
+		6E657FED2B08FEAE003ECF02 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E657FEC2B08FEAE003ECF02 /* Preview Assets.xcassets */; };
+		6E657FF82B08FEAE003ECF02 /* CapShooterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E657FF72B08FEAE003ECF02 /* CapShooterTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6E657FF42B08FEAE003ECF02 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E657FD42B08FEAC003ECF02 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6E657FDB2B08FEAC003ECF02;
+			remoteInfo = CapShooter;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6E657FDC2B08FEAC003ECF02 /* CapShooter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CapShooter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E657FE02B08FEAC003ECF02 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
+		6E657FE32B08FEAC003ECF02 /* CapShooterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapShooterApp.swift; sourceTree = "<group>"; };
+		6E657FE52B08FEAC003ECF02 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6E657FE72B08FEAC003ECF02 /* ImmersiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveView.swift; sourceTree = "<group>"; };
+		6E657FE92B08FEAE003ECF02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6E657FEC2B08FEAE003ECF02 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6E657FEE2B08FEAE003ECF02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6E657FF32B08FEAE003ECF02 /* CapShooterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CapShooterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E657FF72B08FEAE003ECF02 /* CapShooterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapShooterTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6E657FD92B08FEAC003ECF02 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E657FE22B08FEAC003ECF02 /* RealityKitContent in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E657FF02B08FEAE003ECF02 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6E657FD32B08FEAC003ECF02 = {
+			isa = PBXGroup;
+			children = (
+				6E657FDE2B08FEAC003ECF02 /* CapShooter */,
+				6E657FDF2B08FEAC003ECF02 /* Packages */,
+				6E657FF62B08FEAE003ECF02 /* CapShooterTests */,
+				6E657FDD2B08FEAC003ECF02 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6E657FDD2B08FEAC003ECF02 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6E657FDC2B08FEAC003ECF02 /* CapShooter.app */,
+				6E657FF32B08FEAE003ECF02 /* CapShooterTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6E657FDE2B08FEAC003ECF02 /* CapShooter */ = {
+			isa = PBXGroup;
+			children = (
+				6E657FE32B08FEAC003ECF02 /* CapShooterApp.swift */,
+				6E657FE52B08FEAC003ECF02 /* ContentView.swift */,
+				6E657FE72B08FEAC003ECF02 /* ImmersiveView.swift */,
+				6E657FE92B08FEAE003ECF02 /* Assets.xcassets */,
+				6E657FEE2B08FEAE003ECF02 /* Info.plist */,
+				6E657FEB2B08FEAE003ECF02 /* Preview Content */,
+			);
+			path = CapShooter;
+			sourceTree = "<group>";
+		};
+		6E657FDF2B08FEAC003ECF02 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				6E657FE02B08FEAC003ECF02 /* RealityKitContent */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		6E657FEB2B08FEAE003ECF02 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				6E657FEC2B08FEAE003ECF02 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		6E657FF62B08FEAE003ECF02 /* CapShooterTests */ = {
+			isa = PBXGroup;
+			children = (
+				6E657FF72B08FEAE003ECF02 /* CapShooterTests.swift */,
+			);
+			path = CapShooterTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6E657FDB2B08FEAC003ECF02 /* CapShooter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E657FFB2B08FEAE003ECF02 /* Build configuration list for PBXNativeTarget "CapShooter" */;
+			buildPhases = (
+				6E657FD82B08FEAC003ECF02 /* Sources */,
+				6E657FD92B08FEAC003ECF02 /* Frameworks */,
+				6E657FDA2B08FEAC003ECF02 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CapShooter;
+			packageProductDependencies = (
+				6E657FE12B08FEAC003ECF02 /* RealityKitContent */,
+			);
+			productName = CapShooter;
+			productReference = 6E657FDC2B08FEAC003ECF02 /* CapShooter.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6E657FF22B08FEAE003ECF02 /* CapShooterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E657FFE2B08FEAE003ECF02 /* Build configuration list for PBXNativeTarget "CapShooterTests" */;
+			buildPhases = (
+				6E657FEF2B08FEAE003ECF02 /* Sources */,
+				6E657FF02B08FEAE003ECF02 /* Frameworks */,
+				6E657FF12B08FEAE003ECF02 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6E657FF52B08FEAE003ECF02 /* PBXTargetDependency */,
+			);
+			name = CapShooterTests;
+			productName = CapShooterTests;
+			productReference = 6E657FF32B08FEAE003ECF02 /* CapShooterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6E657FD42B08FEAC003ECF02 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1510;
+				LastUpgradeCheck = 1510;
+				TargetAttributes = {
+					6E657FDB2B08FEAC003ECF02 = {
+						CreatedOnToolsVersion = 15.1;
+					};
+					6E657FF22B08FEAE003ECF02 = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = 6E657FDB2B08FEAC003ECF02;
+					};
+				};
+			};
+			buildConfigurationList = 6E657FD72B08FEAC003ECF02 /* Build configuration list for PBXProject "CapShooter" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6E657FD32B08FEAC003ECF02;
+			productRefGroup = 6E657FDD2B08FEAC003ECF02 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6E657FDB2B08FEAC003ECF02 /* CapShooter */,
+				6E657FF22B08FEAE003ECF02 /* CapShooterTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6E657FDA2B08FEAC003ECF02 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E657FED2B08FEAE003ECF02 /* Preview Assets.xcassets in Resources */,
+				6E657FEA2B08FEAE003ECF02 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E657FF12B08FEAE003ECF02 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6E657FD82B08FEAC003ECF02 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E657FE62B08FEAC003ECF02 /* ContentView.swift in Sources */,
+				6E657FE42B08FEAC003ECF02 /* CapShooterApp.swift in Sources */,
+				6E657FE82B08FEAC003ECF02 /* ImmersiveView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E657FEF2B08FEAE003ECF02 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E657FF82B08FEAE003ECF02 /* CapShooterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6E657FF52B08FEAE003ECF02 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6E657FDB2B08FEAC003ECF02 /* CapShooter */;
+			targetProxy = 6E657FF42B08FEAE003ECF02 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		6E657FF92B08FEAE003ECF02 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = xros;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Debug;
+		};
+		6E657FFA2B08FEAE003ECF02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = xros;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Release;
+		};
+		6E657FFC2B08FEAE003ECF02 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"CapShooter/Preview Content\"";
+				DEVELOPMENT_TEAM = ZWN93323N2;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = LZC.CapShooter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Debug;
+		};
+		6E657FFD2B08FEAE003ECF02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"CapShooter/Preview Content\"";
+				DEVELOPMENT_TEAM = ZWN93323N2;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = LZC.CapShooter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Release;
+		};
+		6E657FFF2B08FEAE003ECF02 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZWN93323N2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = LZC.CapShooterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CapShooter.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CapShooter";
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Debug;
+		};
+		6E6580002B08FEAE003ECF02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZWN93323N2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = LZC.CapShooterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CapShooter.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CapShooter";
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6E657FD72B08FEAC003ECF02 /* Build configuration list for PBXProject "CapShooter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E657FF92B08FEAE003ECF02 /* Debug */,
+				6E657FFA2B08FEAE003ECF02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6E657FFB2B08FEAE003ECF02 /* Build configuration list for PBXNativeTarget "CapShooter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E657FFC2B08FEAE003ECF02 /* Debug */,
+				6E657FFD2B08FEAE003ECF02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6E657FFE2B08FEAE003ECF02 /* Build configuration list for PBXNativeTarget "CapShooterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E657FFF2B08FEAE003ECF02 /* Debug */,
+				6E6580002B08FEAE003ECF02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6E657FE12B08FEAC003ECF02 /* RealityKitContent */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RealityKitContent;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 6E657FD42B08FEAC003ECF02 /* Project object */;
+}
