@@ -14,6 +14,7 @@
 		6E657FEA2B08FEAE003ECF02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E657FE92B08FEAE003ECF02 /* Assets.xcassets */; };
 		6E657FED2B08FEAE003ECF02 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E657FEC2B08FEAE003ECF02 /* Preview Assets.xcassets */; };
 		6E657FF82B08FEAE003ECF02 /* CapShooterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E657FF72B08FEAE003ECF02 /* CapShooterTests.swift */; };
+		6E6580022B08FEF0003ECF02 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6580012B08FEF0003ECF02 /* MenuView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,7 @@
 		6E657FEE2B08FEAE003ECF02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E657FF32B08FEAE003ECF02 /* CapShooterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CapShooterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E657FF72B08FEAE003ECF02 /* CapShooterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapShooterTests.swift; sourceTree = "<group>"; };
+		6E6580012B08FEF0003ECF02 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				6E657FE92B08FEAE003ECF02 /* Assets.xcassets */,
 				6E657FEE2B08FEAE003ECF02 /* Info.plist */,
 				6E657FEB2B08FEAE003ECF02 /* Preview Content */,
+				6E6580012B08FEF0003ECF02 /* MenuView.swift */,
 			);
 			path = CapShooter;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E657FE62B08FEAC003ECF02 /* ContentView.swift in Sources */,
+				6E6580022B08FEF0003ECF02 /* MenuView.swift in Sources */,
 				6E657FE42B08FEAC003ECF02 /* CapShooterApp.swift in Sources */,
 				6E657FE82B08FEAC003ECF02 /* ImmersiveView.swift in Sources */,
 			);
