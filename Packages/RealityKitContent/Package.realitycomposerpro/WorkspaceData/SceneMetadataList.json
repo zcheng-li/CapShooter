@@ -65,6 +65,11 @@
       }
     ]
   },
+  "A3B5F50E-06A9-4C2E-8730-E0D5A3B5E6BD" : {
+    "objectMetadataList" : [
+
+    ]
+  },
   "AF09ED6F-1707-48FD-8720-65B998362C09" : {
     "objectMetadataList" : [
       [
@@ -113,6 +118,36 @@
       [
         "B667DE7C-DDAB-49EB-9544-C7C9024FAA84",
         "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "BA04AF2B-2C05-48F7-B36B-844469CD42A6" : {
+    "objectMetadataList" : [
+      [
+        "BA04AF2B-2C05-48F7-B36B-844469CD42A6",
+        "glass_bottle",
+        "Materials"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "BA04AF2B-2C05-48F7-B36B-844469CD42A6",
+        "glass_bottle"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "BA04AF2B-2C05-48F7-B36B-844469CD42A6",
+        "glass_bottle",
+        "Geom"
       ],
       {
         "isExpanded" : true,

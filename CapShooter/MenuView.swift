@@ -15,7 +15,7 @@ struct MenuView: View {
     
     public enum MenuState {
         case showInitialContent
-        case showChooseMapView
+        case showMapPickView
         case showImmersiveSpace
     }
     
@@ -45,7 +45,7 @@ struct MenuView: View {
                         Button(action: {
                             print("开始游戏")
                             withAnimation(.easeInOut(duration: 1)) {
-                                menuState = .showChooseMapView
+                                menuState = .showMapPickView
                             }
                         }, label: {
                             Image(systemName: "arrowtriangle.right")
@@ -86,13 +86,24 @@ struct MenuView: View {
                     }
                 }
                 
-            case .showChooseMapView:
+            case .showMapPickView:
                 HStack {
                     MapPickView(menuState: $menuState)
                 }
                 
             case .showImmersiveSpace:
                 ZStack {
+                    
+                    Button(action: {
+                        Task {
+                            print("back to map pick content")
+                            await dismissImmersiveSpace()
+                            menuState = .showMapPickView
+                        }
+                        
+                    }, label: {
+                        Image(systemName: "arrowshape.turn.up.backward").padding(.horizontal, 20)
+                    }).padding(.vertical, 25)
                     
                 }.onAppear(perform: {
                     Task {

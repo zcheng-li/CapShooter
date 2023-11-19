@@ -15,7 +15,6 @@ def Xform "Root" (
 )
 {
     reorder nameChildren = ["BottleCapPlayer", "BottleCapCom", "GamePlaneGeoOut", "GamePlaneGeo"]
-    float3 xformOp:translate = (0, 0, 0.0706733)
     uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
     def Cube "GamePlaneGeo" (
@@ -133,8 +132,11 @@ def Xform "Root" (
 
         over "RigidBody"
         {
+            float angularDamping = -1
+
             def RealityKitStruct "massFrame"
             {
+                float3 m_inertia = (1, 0.001, 1)
             }
 
             def RealityKitStruct "material"
@@ -145,8 +147,6 @@ def Xform "Root" (
         def RealityKitComponent "MotionState"
         {
             uniform token info:id = "RealityKit.MotionState"
-            float3 m_userSetLinearVelocity = (0.1, 0, -0.1)
-            uint m_userSetLinearVelocityVersion = 1
         }
 
         def RealityKitComponent "InputTarget"
@@ -155,15 +155,26 @@ def Xform "Root" (
             bool allowsIndirectInput = 1
             uniform token info:id = "RealityKit.InputTarget"
         }
+
+        over "Collider"
+        {
+            over "Shape"
+            {
+                token shapeType = "Box"
+            }
+        }
     }
 
     def "BottleCapCom" (
         active = true
+        customData = {
+            float3 rotationEulerHint = (0, 0, -3.1415927)
+        }
         references = @bottle_cap.usd@
     )
     {
-        quatf xformOp:orient = (0.99999994, 0, 0, 0)
-        float3 xformOp:scale = (0.9999998, 0.9999998, 0.9999998)
+        quatf xformOp:orient = (4.371139e-8, 0, 0, 1)
+        float3 xformOp:scale = (0.9999997, 0.9999997, 0.9999997)
         float3 xformOp:translate = (0, 0.049999997, -0.37067324)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
@@ -176,6 +187,8 @@ def Xform "Root" (
 
         over "RigidBody"
         {
+            float angularDamping = -1
+
             def RealityKitStruct "massFrame"
             {
             }
@@ -196,7 +209,7 @@ def Xform "Root" (
         double size = 2
         quatf xformOp:orient = (1, 0, 0, 0)
         float3 xformOp:scale = (1, 0.001, 1)
-        float3 xformOp:translate = (0, -0.001, 0)
+        float3 xformOp:translate = (0.031299442, -0.001, -0.021448374)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         def Material "DefaultMaterial"
@@ -270,6 +283,1396 @@ def Xform "Root" (
 
             def RealityKitStruct "material"
             {
+            }
+        }
+    }
+
+    def "glass_bottle" (
+        active = true
+        prepend references = @glass_bottle.usd@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-0.44785926, 0, -0.1369225)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "glass_bottle_1" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 1.68099, 0)
+        }
+        prepend references = @glass_bottle.usd@
+    )
+    {
+        quatf xformOp:orient = (0.66709405, 0, 0.7449735, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-0.4314493, 0, -0.046140462)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "Material_0"
+            {
+                token outputs:surface.connect = </Root/glass_bottle_1/Materials/Material_0/surfaceShader.outputs:surface>
+
+                over "surfaceShader"
+                {
+                    color3f inputs:diffuseColor.connect = </Root/glass_bottle_1/Materials/Material_0/diffuseColor.outputs:rgb>
+                    float inputs:metallic.connect = </Root/glass_bottle_1/Materials/Material_0/metallic.outputs:r>
+                    normal3f inputs:normal.connect = </Root/glass_bottle_1/Materials/Material_0/normal.outputs:rgb>
+                    float inputs:occlusion.connect = </Root/glass_bottle_1/Materials/Material_0/occlusion.outputs:r>
+                    float inputs:opacity.connect = </Root/glass_bottle_1/Materials/Material_0/opacity.outputs:r>
+                    float inputs:roughness.connect = </Root/glass_bottle_1/Materials/Material_0/roughness.outputs:r>
+                }
+
+                over "roughness"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_1/Materials/Material_0/roughness/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_1/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "metallic"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_1/Materials/Material_0/metallic/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_1/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "occlusion"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_1/Materials/Material_0/occlusion/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_1/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "normal"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_1/Materials/Material_0/normal/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_1/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "opacity"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_1/Materials/Material_0/opacity/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_1/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "diffuseColor"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_1/Materials/Material_0/diffuseColor/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_1/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+            }
+        }
+    }
+
+    def "glass_bottle_2" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 1.68099, 0)
+        }
+        prepend references = @glass_bottle.usd@
+    )
+    {
+        quatf xformOp:orient = (0.66709405, 0, 0.7449735, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-0.42678344, -1.5250407e-8, 0.039325148)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "Material_0"
+            {
+                token outputs:surface.connect = </Root/glass_bottle_2/Materials/Material_0/surfaceShader.outputs:surface>
+
+                over "surfaceShader"
+                {
+                    color3f inputs:diffuseColor.connect = </Root/glass_bottle_2/Materials/Material_0/diffuseColor.outputs:rgb>
+                    float inputs:metallic.connect = </Root/glass_bottle_2/Materials/Material_0/metallic.outputs:r>
+                    normal3f inputs:normal.connect = </Root/glass_bottle_2/Materials/Material_0/normal.outputs:rgb>
+                    float inputs:occlusion.connect = </Root/glass_bottle_2/Materials/Material_0/occlusion.outputs:r>
+                    float inputs:opacity.connect = </Root/glass_bottle_2/Materials/Material_0/opacity.outputs:r>
+                    float inputs:roughness.connect = </Root/glass_bottle_2/Materials/Material_0/roughness.outputs:r>
+                }
+
+                over "roughness"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_2/Materials/Material_0/roughness/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_2/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "metallic"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_2/Materials/Material_0/metallic/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_2/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "occlusion"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_2/Materials/Material_0/occlusion/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_2/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "normal"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_2/Materials/Material_0/normal/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_2/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "opacity"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_2/Materials/Material_0/opacity/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_2/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "diffuseColor"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_2/Materials/Material_0/diffuseColor/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_2/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+            }
+        }
+    }
+
+    def "glass_bottle_3" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 1.68099, 0)
+        }
+        prepend references = @glass_bottle.usd@
+    )
+    {
+        quatf xformOp:orient = (0.66709405, 0, 0.7449735, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-0.43335488, -1.5366822e-8, 0.12303053)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "Material_0"
+            {
+                token outputs:surface.connect = </Root/glass_bottle_3/Materials/Material_0/surfaceShader.outputs:surface>
+
+                over "surfaceShader"
+                {
+                    color3f inputs:diffuseColor.connect = </Root/glass_bottle_3/Materials/Material_0/diffuseColor.outputs:rgb>
+                    float inputs:metallic.connect = </Root/glass_bottle_3/Materials/Material_0/metallic.outputs:r>
+                    normal3f inputs:normal.connect = </Root/glass_bottle_3/Materials/Material_0/normal.outputs:rgb>
+                    float inputs:occlusion.connect = </Root/glass_bottle_3/Materials/Material_0/occlusion.outputs:r>
+                    float inputs:opacity.connect = </Root/glass_bottle_3/Materials/Material_0/opacity.outputs:r>
+                    float inputs:roughness.connect = </Root/glass_bottle_3/Materials/Material_0/roughness.outputs:r>
+                }
+
+                over "roughness"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_3/Materials/Material_0/roughness/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_3/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "metallic"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_3/Materials/Material_0/metallic/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_3/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "occlusion"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_3/Materials/Material_0/occlusion/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_3/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "normal"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_3/Materials/Material_0/normal/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_3/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "opacity"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_3/Materials/Material_0/opacity/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_3/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "diffuseColor"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_3/Materials/Material_0/diffuseColor/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_3/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+            }
+        }
+    }
+
+    def "glass_bottle_4" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 1.68099, 0)
+        }
+        prepend references = @glass_bottle.usd@
+    )
+    {
+        quatf xformOp:orient = (0.66709405, 0, 0.7449735, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-0.11888307, -5.401671e-8, 0.45673698)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "Material_0"
+            {
+                token outputs:surface.connect = </Root/glass_bottle_4/Materials/Material_0/surfaceShader.outputs:surface>
+
+                over "surfaceShader"
+                {
+                    color3f inputs:diffuseColor.connect = </Root/glass_bottle_4/Materials/Material_0/diffuseColor.outputs:rgb>
+                    float inputs:metallic.connect = </Root/glass_bottle_4/Materials/Material_0/metallic.outputs:r>
+                    normal3f inputs:normal.connect = </Root/glass_bottle_4/Materials/Material_0/normal.outputs:rgb>
+                    float inputs:occlusion.connect = </Root/glass_bottle_4/Materials/Material_0/occlusion.outputs:r>
+                    float inputs:opacity.connect = </Root/glass_bottle_4/Materials/Material_0/opacity.outputs:r>
+                    float inputs:roughness.connect = </Root/glass_bottle_4/Materials/Material_0/roughness.outputs:r>
+                }
+
+                over "roughness"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_4/Materials/Material_0/roughness/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_4/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "metallic"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_4/Materials/Material_0/metallic/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_4/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "occlusion"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_4/Materials/Material_0/occlusion/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_4/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "normal"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_4/Materials/Material_0/normal/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_4/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "opacity"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_4/Materials/Material_0/opacity/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_4/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "diffuseColor"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_4/Materials/Material_0/diffuseColor/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_4/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+            }
+        }
+    }
+
+    def "glass_bottle_5" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 2.6894655, 2.3841858e-7)
+        }
+        prepend references = @glass_bottle.usd@
+    )
+    {
+        quatf xformOp:orient = (0.22414291, 0, 0.9745563, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-0.039421223, -6.984919e-8, 0.44794452)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "Material_0"
+            {
+                token outputs:surface.connect = </Root/glass_bottle_5/Materials/Material_0/surfaceShader.outputs:surface>
+
+                over "surfaceShader"
+                {
+                    color3f inputs:diffuseColor.connect = </Root/glass_bottle_5/Materials/Material_0/diffuseColor.outputs:rgb>
+                    float inputs:metallic.connect = </Root/glass_bottle_5/Materials/Material_0/metallic.outputs:r>
+                    normal3f inputs:normal.connect = </Root/glass_bottle_5/Materials/Material_0/normal.outputs:rgb>
+                    float inputs:occlusion.connect = </Root/glass_bottle_5/Materials/Material_0/occlusion.outputs:r>
+                    float inputs:opacity.connect = </Root/glass_bottle_5/Materials/Material_0/opacity.outputs:r>
+                    float inputs:roughness.connect = </Root/glass_bottle_5/Materials/Material_0/roughness.outputs:r>
+                }
+
+                over "roughness"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_5/Materials/Material_0/roughness/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_5/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "metallic"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_5/Materials/Material_0/metallic/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_5/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "occlusion"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_5/Materials/Material_0/occlusion/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_5/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "normal"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_5/Materials/Material_0/normal/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_5/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "opacity"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_5/Materials/Material_0/opacity/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_5/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "diffuseColor"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_5/Materials/Material_0/diffuseColor/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_5/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+            }
+        }
+    }
+
+    def "glass_bottle_6" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 2.6894655, 2.3841858e-7)
+        }
+        prepend references = @glass_bottle.usd@
+    )
+    {
+        quatf xformOp:orient = (0.22414291, 0, 0.9745563, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0.05012206, -6.984919e-8, 0.44907206)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "Material_0"
+            {
+                token outputs:surface.connect = </Root/glass_bottle_6/Materials/Material_0/surfaceShader.outputs:surface>
+
+                over "surfaceShader"
+                {
+                    color3f inputs:diffuseColor.connect = </Root/glass_bottle_6/Materials/Material_0/diffuseColor.outputs:rgb>
+                    float inputs:metallic.connect = </Root/glass_bottle_6/Materials/Material_0/metallic.outputs:r>
+                    normal3f inputs:normal.connect = </Root/glass_bottle_6/Materials/Material_0/normal.outputs:rgb>
+                    float inputs:occlusion.connect = </Root/glass_bottle_6/Materials/Material_0/occlusion.outputs:r>
+                    float inputs:opacity.connect = </Root/glass_bottle_6/Materials/Material_0/opacity.outputs:r>
+                    float inputs:roughness.connect = </Root/glass_bottle_6/Materials/Material_0/roughness.outputs:r>
+                }
+
+                over "roughness"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_6/Materials/Material_0/roughness/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_6/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "metallic"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_6/Materials/Material_0/metallic/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_6/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "occlusion"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_6/Materials/Material_0/occlusion/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_6/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "normal"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_6/Materials/Material_0/normal/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_6/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "opacity"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_6/Materials/Material_0/opacity/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_6/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "diffuseColor"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_6/Materials/Material_0/diffuseColor/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_6/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+            }
+        }
+    }
+
+    def "glass_bottle_7" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 4.951727, 0)
+        }
+        prepend references = @glass_bottle.usd@
+    )
+    {
+        quatf xformOp:orient = (0.78646666, 0, -0.6176326, 0)
+        float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+        float3 xformOp:translate = (0.14835581, -6.984919e-8, 0.449072)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "Material_0"
+            {
+                token outputs:surface.connect = </Root/glass_bottle_7/Materials/Material_0/surfaceShader.outputs:surface>
+
+                over "surfaceShader"
+                {
+                    color3f inputs:diffuseColor.connect = </Root/glass_bottle_7/Materials/Material_0/diffuseColor.outputs:rgb>
+                    float inputs:metallic.connect = </Root/glass_bottle_7/Materials/Material_0/metallic.outputs:r>
+                    normal3f inputs:normal.connect = </Root/glass_bottle_7/Materials/Material_0/normal.outputs:rgb>
+                    float inputs:occlusion.connect = </Root/glass_bottle_7/Materials/Material_0/occlusion.outputs:r>
+                    float inputs:opacity.connect = </Root/glass_bottle_7/Materials/Material_0/opacity.outputs:r>
+                    float inputs:roughness.connect = </Root/glass_bottle_7/Materials/Material_0/roughness.outputs:r>
+                }
+
+                over "roughness"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_7/Materials/Material_0/roughness/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_7/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "metallic"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_7/Materials/Material_0/metallic/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_7/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "occlusion"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_7/Materials/Material_0/occlusion/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_7/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "normal"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_7/Materials/Material_0/normal/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_7/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "opacity"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_7/Materials/Material_0/opacity/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_7/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "diffuseColor"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_7/Materials/Material_0/diffuseColor/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_7/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+            }
+        }
+    }
+
+    def "glass_bottle_8" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 1.68099, 0)
+        }
+        prepend references = @glass_bottle.usd@
+    )
+    {
+        quatf xformOp:orient = (0.66709405, 0, 0.7449735, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0.46568406, -1.4901161e-8, 0.12303053)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "Material_0"
+            {
+                token outputs:surface.connect = </Root/glass_bottle_8/Materials/Material_0/surfaceShader.outputs:surface>
+
+                over "surfaceShader"
+                {
+                    color3f inputs:diffuseColor.connect = </Root/glass_bottle_8/Materials/Material_0/diffuseColor.outputs:rgb>
+                    float inputs:metallic.connect = </Root/glass_bottle_8/Materials/Material_0/metallic.outputs:r>
+                    normal3f inputs:normal.connect = </Root/glass_bottle_8/Materials/Material_0/normal.outputs:rgb>
+                    float inputs:occlusion.connect = </Root/glass_bottle_8/Materials/Material_0/occlusion.outputs:r>
+                    float inputs:opacity.connect = </Root/glass_bottle_8/Materials/Material_0/opacity.outputs:r>
+                    float inputs:roughness.connect = </Root/glass_bottle_8/Materials/Material_0/roughness.outputs:r>
+                }
+
+                over "roughness"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_8/Materials/Material_0/roughness/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_8/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "metallic"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_8/Materials/Material_0/metallic/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_8/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "occlusion"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_8/Materials/Material_0/occlusion/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_8/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "normal"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_8/Materials/Material_0/normal/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_8/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "opacity"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_8/Materials/Material_0/opacity/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_8/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "diffuseColor"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_8/Materials/Material_0/diffuseColor/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_8/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+            }
+        }
+    }
+
+    def "glass_bottle_9" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 3.7032204, 0)
+        }
+        prepend references = @glass_bottle.usd@
+    )
+    {
+        quatf xformOp:orient = (-0.2771379, 0, 0.96083015, 0)
+        float3 xformOp:scale = (1, 0.9999999, 1)
+        float3 xformOp:translate = (0.46571162, -1.4901161e-8, 0.039325178)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "Material_0"
+            {
+                token outputs:surface.connect = </Root/glass_bottle_9/Materials/Material_0/surfaceShader.outputs:surface>
+
+                over "surfaceShader"
+                {
+                    color3f inputs:diffuseColor.connect = </Root/glass_bottle_9/Materials/Material_0/diffuseColor.outputs:rgb>
+                    float inputs:metallic.connect = </Root/glass_bottle_9/Materials/Material_0/metallic.outputs:r>
+                    normal3f inputs:normal.connect = </Root/glass_bottle_9/Materials/Material_0/normal.outputs:rgb>
+                    float inputs:occlusion.connect = </Root/glass_bottle_9/Materials/Material_0/occlusion.outputs:r>
+                    float inputs:opacity.connect = </Root/glass_bottle_9/Materials/Material_0/opacity.outputs:r>
+                    float inputs:roughness.connect = </Root/glass_bottle_9/Materials/Material_0/roughness.outputs:r>
+                }
+
+                over "roughness"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_9/Materials/Material_0/roughness/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_9/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "metallic"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_9/Materials/Material_0/metallic/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_9/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "occlusion"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_9/Materials/Material_0/occlusion/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_9/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "normal"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_9/Materials/Material_0/normal/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_9/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "opacity"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_9/Materials/Material_0/opacity/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_9/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "diffuseColor"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_9/Materials/Material_0/diffuseColor/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_9/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+            }
+        }
+    }
+
+    def "glass_bottle_10" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 0.8108391, 0)
+        }
+        prepend references = @glass_bottle.usd@
+    )
+    {
+        quatf xformOp:orient = (0.918937, 0, 0.39440432, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0.46568406, -1.4901161e-8, -0.05669692)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "Material_0"
+            {
+                token outputs:surface.connect = </Root/glass_bottle_10/Materials/Material_0/surfaceShader.outputs:surface>
+
+                over "surfaceShader"
+                {
+                    color3f inputs:diffuseColor.connect = </Root/glass_bottle_10/Materials/Material_0/diffuseColor.outputs:rgb>
+                    float inputs:metallic.connect = </Root/glass_bottle_10/Materials/Material_0/metallic.outputs:r>
+                    normal3f inputs:normal.connect = </Root/glass_bottle_10/Materials/Material_0/normal.outputs:rgb>
+                    float inputs:occlusion.connect = </Root/glass_bottle_10/Materials/Material_0/occlusion.outputs:r>
+                    float inputs:opacity.connect = </Root/glass_bottle_10/Materials/Material_0/opacity.outputs:r>
+                    float inputs:roughness.connect = </Root/glass_bottle_10/Materials/Material_0/roughness.outputs:r>
+                }
+
+                over "roughness"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_10/Materials/Material_0/roughness/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_10/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "metallic"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_10/Materials/Material_0/metallic/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_10/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "occlusion"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_10/Materials/Material_0/occlusion/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_10/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "normal"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_10/Materials/Material_0/normal/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_10/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "opacity"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_10/Materials/Material_0/opacity/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_10/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "diffuseColor"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_10/Materials/Material_0/diffuseColor/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_10/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+            }
+        }
+    }
+
+    def "glass_bottle_11" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 2.0221264, 0)
+        }
+        prepend references = @glass_bottle.usd@
+    )
+    {
+        quatf xformOp:orient = (0.53095996, 0, 0.84739685, 0)
+        float3 xformOp:scale = (1, 0.99999994, 1)
+        float3 xformOp:translate = (0.48463923, 0, -0.13249075)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "Material_0"
+            {
+                token outputs:surface.connect = </Root/glass_bottle_11/Materials/Material_0/surfaceShader.outputs:surface>
+
+                over "surfaceShader"
+                {
+                    color3f inputs:diffuseColor.connect = </Root/glass_bottle_11/Materials/Material_0/diffuseColor.outputs:rgb>
+                    float inputs:metallic.connect = </Root/glass_bottle_11/Materials/Material_0/metallic.outputs:r>
+                    normal3f inputs:normal.connect = </Root/glass_bottle_11/Materials/Material_0/normal.outputs:rgb>
+                    float inputs:occlusion.connect = </Root/glass_bottle_11/Materials/Material_0/occlusion.outputs:r>
+                    float inputs:opacity.connect = </Root/glass_bottle_11/Materials/Material_0/opacity.outputs:r>
+                    float inputs:roughness.connect = </Root/glass_bottle_11/Materials/Material_0/roughness.outputs:r>
+                }
+
+                over "roughness"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_11/Materials/Material_0/roughness/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_11/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "metallic"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_11/Materials/Material_0/metallic/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_11/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "occlusion"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_11/Materials/Material_0/occlusion/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_11/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "normal"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_11/Materials/Material_0/normal/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_11/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "opacity"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_11/Materials/Material_0/opacity/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_11/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "diffuseColor"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_11/Materials/Material_0/diffuseColor/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_11/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+            }
+        }
+    }
+
+    def "glass_bottle_12" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 2.909119, 0)
+        }
+        prepend references = @glass_bottle.usd@
+    )
+    {
+        quatf xformOp:orient = (0.11597523, 0, 0.9932521, 0)
+        float3 xformOp:scale = (0.9999998, 0.9999998, 0.9999998)
+        float3 xformOp:translate = (-0.060300767, 0, -0.46565855)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "Material_0"
+            {
+                token outputs:surface.connect = </Root/glass_bottle_12/Materials/Material_0/surfaceShader.outputs:surface>
+
+                over "surfaceShader"
+                {
+                    color3f inputs:diffuseColor.connect = </Root/glass_bottle_12/Materials/Material_0/diffuseColor.outputs:rgb>
+                    float inputs:metallic.connect = </Root/glass_bottle_12/Materials/Material_0/metallic.outputs:r>
+                    normal3f inputs:normal.connect = </Root/glass_bottle_12/Materials/Material_0/normal.outputs:rgb>
+                    float inputs:occlusion.connect = </Root/glass_bottle_12/Materials/Material_0/occlusion.outputs:r>
+                    float inputs:opacity.connect = </Root/glass_bottle_12/Materials/Material_0/opacity.outputs:r>
+                    float inputs:roughness.connect = </Root/glass_bottle_12/Materials/Material_0/roughness.outputs:r>
+                }
+
+                over "roughness"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_12/Materials/Material_0/roughness/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_12/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "metallic"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_12/Materials/Material_0/metallic/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_12/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "occlusion"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_12/Materials/Material_0/occlusion/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_12/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "normal"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_12/Materials/Material_0/normal/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_12/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "opacity"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_12/Materials/Material_0/opacity/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_12/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "diffuseColor"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_12/Materials/Material_0/diffuseColor/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_12/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+            }
+        }
+    }
+
+    def "glass_bottle_13" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 2.0221264, 0)
+        }
+        prepend references = @glass_bottle.usd@
+    )
+    {
+        quatf xformOp:orient = (0.53095996, 0, 0.84739685, 0)
+        float3 xformOp:scale = (1, 0.99999994, 1)
+        float3 xformOp:translate = (0.03911408, 0, -0.46581435)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "Material_0"
+            {
+                token outputs:surface.connect = </Root/glass_bottle_13/Materials/Material_0/surfaceShader.outputs:surface>
+
+                over "surfaceShader"
+                {
+                    color3f inputs:diffuseColor.connect = </Root/glass_bottle_13/Materials/Material_0/diffuseColor.outputs:rgb>
+                    float inputs:metallic.connect = </Root/glass_bottle_13/Materials/Material_0/metallic.outputs:r>
+                    normal3f inputs:normal.connect = </Root/glass_bottle_13/Materials/Material_0/normal.outputs:rgb>
+                    float inputs:occlusion.connect = </Root/glass_bottle_13/Materials/Material_0/occlusion.outputs:r>
+                    float inputs:opacity.connect = </Root/glass_bottle_13/Materials/Material_0/opacity.outputs:r>
+                    float inputs:roughness.connect = </Root/glass_bottle_13/Materials/Material_0/roughness.outputs:r>
+                }
+
+                over "roughness"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_13/Materials/Material_0/roughness/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_13/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "metallic"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_13/Materials/Material_0/metallic/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_13/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "occlusion"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_13/Materials/Material_0/occlusion/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_13/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "normal"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_13/Materials/Material_0/normal/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_13/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "opacity"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_13/Materials/Material_0/opacity/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_13/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "diffuseColor"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_13/Materials/Material_0/diffuseColor/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_13/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+            }
+        }
+    }
+
+    def "glass_bottle_14" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 0.84195507, 0)
+        }
+        prepend references = @glass_bottle.usd@
+    )
+    {
+        quatf xformOp:orient = (0.91268986, 0, 0.40865287, 0)
+        float3 xformOp:scale = (0.9999999, 0.9999998, 0.9999999)
+        float3 xformOp:translate = (0.13684914, 0, -0.4658143)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "Material_0"
+            {
+                token outputs:surface.connect = </Root/glass_bottle_14/Materials/Material_0/surfaceShader.outputs:surface>
+
+                over "surfaceShader"
+                {
+                    color3f inputs:diffuseColor.connect = </Root/glass_bottle_14/Materials/Material_0/diffuseColor.outputs:rgb>
+                    float inputs:metallic.connect = </Root/glass_bottle_14/Materials/Material_0/metallic.outputs:r>
+                    normal3f inputs:normal.connect = </Root/glass_bottle_14/Materials/Material_0/normal.outputs:rgb>
+                    float inputs:occlusion.connect = </Root/glass_bottle_14/Materials/Material_0/occlusion.outputs:r>
+                    float inputs:opacity.connect = </Root/glass_bottle_14/Materials/Material_0/opacity.outputs:r>
+                    float inputs:roughness.connect = </Root/glass_bottle_14/Materials/Material_0/roughness.outputs:r>
+                }
+
+                over "roughness"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_14/Materials/Material_0/roughness/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_14/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "metallic"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_14/Materials/Material_0/metallic/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_14/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "occlusion"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_14/Materials/Material_0/occlusion/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_14/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "normal"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_14/Materials/Material_0/normal/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_14/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "opacity"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_14/Materials/Material_0/opacity/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_14/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "diffuseColor"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_14/Materials/Material_0/diffuseColor/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_14/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+            }
+        }
+    }
+
+    def "glass_bottle_15" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 3.7480152, 0)
+        }
+        prepend references = @glass_bottle.usd@
+    )
+    {
+        quatf xformOp:orient = (-0.29858643, 0, 0.9543826, 0)
+        float3 xformOp:scale = (0.9999998, 0.9999997, 0.9999998)
+        float3 xformOp:translate = (-0.16068292, 0, -0.45237207)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "Material_0"
+            {
+                token outputs:surface.connect = </Root/glass_bottle_15/Materials/Material_0/surfaceShader.outputs:surface>
+
+                over "surfaceShader"
+                {
+                    color3f inputs:diffuseColor.connect = </Root/glass_bottle_15/Materials/Material_0/diffuseColor.outputs:rgb>
+                    float inputs:metallic.connect = </Root/glass_bottle_15/Materials/Material_0/metallic.outputs:r>
+                    normal3f inputs:normal.connect = </Root/glass_bottle_15/Materials/Material_0/normal.outputs:rgb>
+                    float inputs:occlusion.connect = </Root/glass_bottle_15/Materials/Material_0/occlusion.outputs:r>
+                    float inputs:opacity.connect = </Root/glass_bottle_15/Materials/Material_0/opacity.outputs:r>
+                    float inputs:roughness.connect = </Root/glass_bottle_15/Materials/Material_0/roughness.outputs:r>
+                }
+
+                over "roughness"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_15/Materials/Material_0/roughness/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_15/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "metallic"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_15/Materials/Material_0/metallic/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_15/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "occlusion"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_15/Materials/Material_0/occlusion/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_15/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "normal"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_15/Materials/Material_0/normal/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_15/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "opacity"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_15/Materials/Material_0/opacity/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_15/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
+
+                over "diffuseColor"
+                {
+                    float2 inputs:st.connect = </Root/glass_bottle_15/Materials/Material_0/diffuseColor/TexCoordReader.outputs:result>
+
+                    over "TexCoordReader"
+                    {
+                        token inputs:varname.connect = </Root/glass_bottle_15/Materials/Material_0/surfaceShader.inputs:frame:stPrimvarName>
+                    }
+                }
             }
         }
     }
