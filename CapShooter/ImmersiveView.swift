@@ -10,15 +10,36 @@ import RealityKit
 import RealityKitContent
 
 struct ImmersiveView: View {
-    var body: some View {
-        RealityView { content in
-            // Add the initial RealityKit content
-            if let scene = try? await Entity(named: "Immersive", in: realityKitContentBundle) {
-                content.add(scene)
+    var tap: some Gesture {
+        SpatialTapGesture()
+            .targetedToAnyEntity()
+            .onEnded { value in
+                print(value.entity)
             }
-        }
     }
+    
+    
+    var body: some View {
+        RealityView(make: {content, attachments in
+            // Add the initial RealityKit content
+            if let gamePlane = try? await Entity(named: "game_plane", in: realityKitContentBundle) {
+                content.add(gamePlane)
+            }
+        }, update: {content, attachments in
+            if let attachmentEntity = attachments.entity(for: "test") {
+                content.add(attachmentEntity)
+            }
+            
+        }, attachments: {
+            Attachment(id: "test") {
+                Text("hi")
+            }
+        }).gesture(tap)
+        
+    }
+
 }
+
 
 #Preview {
     ImmersiveView()

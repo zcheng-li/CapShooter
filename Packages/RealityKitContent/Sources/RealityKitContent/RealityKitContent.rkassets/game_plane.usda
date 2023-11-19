@@ -1,0 +1,277 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 1.0 (409.60.6)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+reorder rootPrims = ["Root", "BottleCapCom"]
+
+def Xform "Root" (
+    references = None
+)
+{
+    reorder nameChildren = ["BottleCapPlayer", "BottleCapCom", "GamePlaneGeoOut", "GamePlaneGeo"]
+    float3 xformOp:translate = (0, 0, 0.0706733)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+    def Cube "GamePlaneGeo" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        reorder nameChildren = ["BottleCapPlayer", "BottleCapCom", "DefaultMaterial", "Collider", "HierarchicalFade", "Anchoring", "RigidBody"]
+        rel material:binding = </Root/GamePlaneGeo/DefaultMaterial>
+        double size = 1
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 0.001, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+            prepend token outputs:surface.connect = </Root/GamePlaneGeo/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+
+        def RealityKitComponent "Collider"
+        {
+            uint group = 1
+            uniform token info:id = "RealityKit.Collider"
+            uint mask = 4294967295
+            token type = "Default"
+
+            def RealityKitStruct "Shape"
+            {
+                float3 extent = (1, 0.001, 1)
+                token shapeType = "Box"
+
+                def RealityKitStruct "pose"
+                {
+                }
+            }
+        }
+
+        def RealityKitComponent "HierarchicalFade"
+        {
+            uniform token info:id = "RealityKit.HierarchicalFade"
+            float opacity = 0.20357063
+        }
+
+        def RealityKitComponent "Anchoring" (
+            active = false
+        )
+        {
+            uniform token info:id = "RealityKit.Anchoring"
+
+            def RealityKitStruct "descriptor"
+            {
+                token alignment = "Horizontal"
+                token classification = "Floor"
+                matrix4d transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
+                token type = "World"
+            }
+        }
+
+        def RealityKitComponent "RigidBody"
+        {
+            bool gravityEnabled = 0
+            uniform token info:id = "RealityKit.RigidBody"
+            bool isCCDEnabled = 1
+            token motionType = "Static"
+
+            def RealityKitStruct "massFrame"
+            {
+                def RealityKitStruct "m_pose"
+                {
+                }
+            }
+
+            def RealityKitStruct "material"
+            {
+                double dynamicFriction = 0.5
+                double staticFriction = 0.5
+            }
+        }
+    }
+
+    over "Anchoring"
+    {
+        def RealityKitStruct "descriptor"
+        {
+        }
+    }
+
+    def "BottleCapPlayer" (
+        active = true
+        references = @bottle_cap.usd@
+    )
+    {
+        quatf xformOp:orient = (0.99999994, 0, 0, 0)
+        float3 xformOp:scale = (0.9999998, 0.9999998, 0.9999998)
+        float3 xformOp:translate = (0, 0.049999997, 0.22932671)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Anchoring"
+        {
+            def RealityKitStruct "descriptor"
+            {
+            }
+        }
+
+        over "RigidBody"
+        {
+            def RealityKitStruct "massFrame"
+            {
+            }
+
+            def RealityKitStruct "material"
+            {
+            }
+        }
+
+        def RealityKitComponent "MotionState"
+        {
+            uniform token info:id = "RealityKit.MotionState"
+            float3 m_userSetLinearVelocity = (0.1, 0, -0.1)
+            uint m_userSetLinearVelocityVersion = 1
+        }
+
+        def RealityKitComponent "InputTarget"
+        {
+            bool allowsDirectInput = 1
+            bool allowsIndirectInput = 1
+            uniform token info:id = "RealityKit.InputTarget"
+        }
+    }
+
+    def "BottleCapCom" (
+        active = true
+        references = @bottle_cap.usd@
+    )
+    {
+        quatf xformOp:orient = (0.99999994, 0, 0, 0)
+        float3 xformOp:scale = (0.9999998, 0.9999998, 0.9999998)
+        float3 xformOp:translate = (0, 0.049999997, -0.37067324)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Anchoring"
+        {
+            def RealityKitStruct "descriptor"
+            {
+            }
+        }
+
+        over "RigidBody"
+        {
+            def RealityKitStruct "massFrame"
+            {
+            }
+
+            def RealityKitStruct "material"
+            {
+            }
+        }
+    }
+
+    def Cube "GamePlaneGeoOut" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        reorder nameChildren = ["BottleCapPlayer", "BottleCapCom", "DefaultMaterial", "Collider", "HierarchicalFade", "Anchoring", "RigidBody"]
+        rel material:binding = </Root/GamePlaneGeoOut/DefaultMaterial>
+        double size = 2
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 0.001, 1)
+        float3 xformOp:translate = (0, -0.001, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Root/GamePlaneGeoOut/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+
+        def RealityKitComponent "Collider"
+        {
+            uint group = 1
+            uniform token info:id = "RealityKit.Collider"
+            uint mask = 4294967295
+            token type = "Default"
+
+            def RealityKitStruct "Shape"
+            {
+                float3 extent = (1, 0.001, 1)
+                token shapeType = "Box"
+
+                def RealityKitStruct "pose"
+                {
+                }
+            }
+        }
+
+        def RealityKitComponent "HierarchicalFade"
+        {
+            uniform token info:id = "RealityKit.HierarchicalFade"
+            float opacity = 0.090853386
+        }
+
+        def RealityKitComponent "Anchoring" (
+            active = false
+        )
+        {
+            uniform token info:id = "RealityKit.Anchoring"
+
+            def RealityKitStruct "descriptor"
+            {
+                token alignment = "Horizontal"
+                token classification = "Floor"
+                matrix4d transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
+                token type = "World"
+            }
+        }
+
+        def RealityKitComponent "RigidBody"
+        {
+            bool gravityEnabled = 0
+            uniform token info:id = "RealityKit.RigidBody"
+            bool isCCDEnabled = 1
+            bool lockTranslationZ = 0
+            token motionType = "Static"
+
+            def RealityKitStruct "massFrame"
+            {
+                def RealityKitStruct "m_pose"
+                {
+                }
+            }
+
+            def RealityKitStruct "material"
+            {
+            }
+        }
+    }
+}
+

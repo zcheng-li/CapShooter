@@ -17,5 +17,6 @@ struct CapShooterApp: App {
         ImmersiveSpace(id: "ImmersiveSpace") {
             ImmersiveView()
         }
+        
     }
 }
